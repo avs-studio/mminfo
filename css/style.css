@@ -8,7 +8,8 @@
 @media (max-width: 61.9em) { ... }
 
 // Large devices (desktops, less than 75em)
-@media (max-width: 74.9em) { ... }
+@media (max-width: 74.9em) { 
+	
+}
 
-// Extra large devices (large desktops)
-// No media query since the extra-large breakpoint has no upper bound on its width
+.jumbotron {background-color: #CCC;}
