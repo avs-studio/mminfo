@@ -1,26 +1,14 @@
 <?php include_once('../header.php') ?>
 <?php require_once("../models/admin-cities.php");?>
 
-<script>
-	function getDelete(){
-		var checkBox = $("tbody input:checkbox");
-
-		if(checkBox.prop("checked")) {
-			return checkBox.prop("name");
-		} else {
-			alert(0);
-		}
-	}
-</script>
-
 <div class="row edit-buttons">
 	<div class="col-xs-12 pull-xs-right text-xs-right">
-    	<a href="index.php?action=edit-city&id=2" role="button" name="edit-city" class="btn btn-success-outline"><i class="fa fa-pencil-square-o"></i> Править</a>
+    	<a href="index.php?action=edit-city" role="button" name="edit-city" class="btn btn-success-outline"><i class="fa fa-pencil-square-o"></i> Править</a>
     	&nbsp;&nbsp;
-    	<a href="index.php?action=publish-city&id=2" role="button" name="publish-city" class="btn btn-primary-outline"><i class="fa fa-plus-square-o"></i> Опубликовать</a>
-    	<a href="index.php?action=unpublish-city&id=2" role="button" name="unpublish-city" class="btn btn-primary-outline"><i class="fa fa-minus-square-o"></i> В архив</a>
+    	<a href="index.php?action=publish-city" role="button" name="publish-city" class="btn btn-primary-outline"><i class="fa fa-plus-square-o"></i> Опубликовать</a>
+    	<a href="index.php?action=unpublish-city" role="button" name="unpublish-city" class="btn btn-primary-outline"><i class="fa fa-minus-square-o"></i> В архив</a>
     	&nbsp;&nbsp;
-    	<a href="#" onclick="getDelete()" role="button" name="delete-city" class="btn btn-danger-outline"><i class="fa fa-trash-o fa-lg"></i> Удалить</a>
+    	<a href="index.php?action=delete-city" role="button" name="delete-city" class="btn btn-delete btn-danger-outline"><i class="fa fa-trash-o fa-lg"></i> Удалить</a>
     </div>
 </div>
 <hr>

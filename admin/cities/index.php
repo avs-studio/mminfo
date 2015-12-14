@@ -16,15 +16,20 @@
     	}
 	} 
 	elseif($action == "edit-city"){
-    	echo "edit_city in controller";
+    	echo "edit_city in controller ID=";
+    	echo $_GET['id'];
     } elseif($action == "publish-city"){
-    	cities_publish($link, $_GET['id']);
+    	if(isset($_GET['id']))
+	    	cities_publish($link, $_GET['id']);
+		    header("Location: index.php");
     } elseif ($action == "unpublish-city"){
-    	cities_unpublish($link, $_GET['id']);
+    	if(isset($_GET['id']))
+	    	cities_unpublish($link, $_GET['id']);
+	    	header("Location: index.php");
     } elseif ($action == "delete-city"){
-    	// if(isset($_GET['id']))
-	    // 	cities_delete($link, $_GET['id']);
-	    // 	header("Location: index.php");
+    	if(isset($_GET['id']))
+	    	cities_delete($link, $_GET['id']);
+	    	header("Location: index.php");
     } else {
     	$cities = cities_all($link);
     	include("../views/admin-cities.php");

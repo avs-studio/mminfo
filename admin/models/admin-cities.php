@@ -43,6 +43,7 @@ function cities_new($link, $name, $alias){
 }
 
 function cities_edit($id, $name, $alias){}
+
 function cities_delete($link, $id){
     //Запрос
     $query = sprintf("DELETE FROM cities WHERE id=%d",(int)$id);
@@ -53,11 +54,31 @@ function cities_delete($link, $id){
     
     return true;
 }
-function cities_publish($id){
-    echo "publish_city in model";
+function cities_publish($link, $id){
+    $publish = 1;
+
+    $sql = "UPDATE cities SET publish=%b WHERE id=%d";
+    $query = sprintf($sql,mysqli_real_escape_string($link, $publish),mysqli_real_escape_string($link, $id));
+
+    $result = mysqli_query($link, $query);
+    
+    if(!$result)
+        die(mysqli_error($link));
+    
+    return true;
 }
-function cities_unpublish($id){
-    echo "unpublish_city in model";
+function cities_unpublish($link, $id){
+    $publish = 0;
+
+    $sql = "UPDATE cities SET publish=%b WHERE id=%d";
+    $query = sprintf($sql,mysqli_real_escape_string($link, $publish),mysqli_real_escape_string($link, $id));
+
+    $result = mysqli_query($link, $query);
+    
+    if(!$result)
+        die(mysqli_error($link));
+    
+    return true;
 }
 
 
