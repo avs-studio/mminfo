@@ -19,7 +19,7 @@ function cities_all($link)
     
     return $cities;    
 }
-function cities_new($link, $name, $alias){
+function city_new($link, $name, $alias){
     //Подготовка
     $name = trim($name);
     $alias = trim($alias);
@@ -42,22 +42,40 @@ function cities_new($link, $name, $alias){
     return true;
 }
 
-function cities_edit($id, $name, $alias){}
+function city_edit($link, $name, $alias, $id){
+    //Подготовка
+    $name = trim($name);
+    $alias = trim($alias);
+    $id = trim($id);
+
+    //Проверка
+    if ($name == '')
+        return false;
+
+    //Запрос
+    $sql = "UPDATE cities SET name='%s', alias='%s' WHERE id='%d'";
+    $query = sprintf($sql,mysqli_real_escape_string($link, $name),mysqli_real_escape_string($link, $alias),mysqli_real_escape_string($link, $id));
+    $result = mysqli_query($link, $query);
+
+    if(!$result)
+        die(mysqli_error($link));
+
+    return true;
+}
 
 function cities_delete($link, $id){
     //Запрос
-    $query = sprintf("DELETE FROM cities WHERE id=%d",(int)$id);
+    $query = sprintf("DELETE FROM cities WHERE id IN (%s)", mysqli_real_escape_string($link, $id));
     $result = mysqli_query($link, $query);
     
     if(!$result)
         die(mysqli_error($link));
     
-    return true;
+    return mysqli_affected_rows($link);
 }
 function cities_publish($link, $id){
     $publish = 1;
-
-    $sql = "UPDATE cities SET publish=%b WHERE id=%d";
+    $sql = "UPDATE cities SET publish=%b WHERE id IN (%s)";
     $query = sprintf($sql,mysqli_real_escape_string($link, $publish),mysqli_real_escape_string($link, $id));
 
     $result = mysqli_query($link, $query);
@@ -65,12 +83,12 @@ function cities_publish($link, $id){
     if(!$result)
         die(mysqli_error($link));
     
-    return true;
+    return mysqli_affected_rows($link);
 }
 function cities_unpublish($link, $id){
     $publish = 0;
 
-    $sql = "UPDATE cities SET publish=%b WHERE id=%d";
+    $sql = "UPDATE cities SET publish=%b WHERE id IN (%s)";
     $query = sprintf($sql,mysqli_real_escape_string($link, $publish),mysqli_real_escape_string($link, $id));
 
     $result = mysqli_query($link, $query);
@@ -78,13 +96,13 @@ function cities_unpublish($link, $id){
     if(!$result)
         die(mysqli_error($link));
     
-    return true;
+    return mysqli_affected_rows($link);
 }
 
 
-/* function articles_get($link, $id_article){
+function city_get($link, $id){
     //Запрос
-    $query = sprintf("SELECT * FROM articles WHERE id=%d",(int)$id_article);
+    $query = sprintf("SELECT * FROM cities WHERE id=%d",(int)$id);
     $result = mysqli_query($link, $query);
     
     if(!$result)
@@ -92,14 +110,8 @@ function cities_unpublish($link, $id){
     
     //Извлечение из БД
     
-    $article = mysqli_fetch_assoc($result);
-    return $article;
+    $city = mysqli_fetch_assoc($result);
+    return $city;
 }
 
-function articles_edit($id, $title, $date, $content){
-
-}
-function articles_delete($id){
-
-}
-?>*/
+?>

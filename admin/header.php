@@ -1,3 +1,11 @@
+<?php 
+    $btn = 'btn btn-success';
+    $current = $_SERVER['REQUEST_URI'];
+    $saleLink = '/mminfo/admin/sales/add-sale.php';
+    $butikLink = '/mminfo/admin/butiks/add-butik.php';
+    $mallsLink = '/mminfo/admin/malls/add-mall.php';
+    $citiesLink = '/mminfo/admin/cities/index.php';
+?>
 <!DOCTYPE html>
 <html lang="ru">
     <head>
@@ -16,9 +24,9 @@
             <header class="row">
                 <h2 class="col-xs-4"><a href="/mminfo">MallMap.info</a></h2>
                 <a href="/mminfo/admin" class="col-xs-4 text-center">Панель администратора</a>
-                <a href="/mminfo/admin/sales/add-sale.php"><div class="col-xs-1">Скидки</div></a>
-                <a href="/mminfo/admin/butiks/add-butik.php"><div class="col-xs-1">Бутики</div></a>
-                <a href="/mminfo/admin/malls/add-mall.php"><div class="col-xs-1">Моллы</div></a>
-                <a href="/mminfo/admin/cities/index.php"><div class="col-xs-1">Города</div></a>
+                <a href="/mminfo/admin/sales/add-sale.php"><div class="col-xs-1 <?php if($current==$saleLink) echo $btn; ?>">Скидки</div></a>
+                <a href="/mminfo/admin/butiks/add-butik.php"><div class="col-xs-1 <?php if($current==$butikLink) echo $btn; ?>">Бутики</div></a>
+                <a href="/mminfo/admin/malls/add-mall.php"><div class="col-xs-1 <?php if($current==$mallsLink) echo $btn; ?>">Моллы</div></a>
+                <a href="/mminfo/admin/cities/index.php"><div class="col-xs-1 <?php if($current==$citiesLink) echo $btn; ?>">Города</div></a>
             </header>
             <hr>

@@ -15,16 +15,16 @@
 <div class="row">
 	<div class="col-xs-6">
 		<p class="lead">Добавить город</p>
-		<form method="post" action="index.php?action=add_city">
+		<form method="post" action="index.php?action=<?=$formAction;?>">
 			<fieldset class="form-group row col-xs-12">
-			    <input type="text" name="name" class="form-control form-control-lg" placeholder="Название" autofocus required>
+			    <input type="text" value="<?=$city['name']?>" name="name" class="form-control form-control-lg" placeholder="Название" autofocus required>
 			    <small class="text-muted"><span class="text-danger">*</span> обязательно для заполнения</small>
 			</fieldset>
 			<fieldset class="form-group row col-xs-12">
-			    <input type="text" name="alias" class="form-control" placeholder="Алиас" required>
+			    <input type="text" value="<?=$city['alias']?>" name="alias" class="form-control" placeholder="Алиас">
 			    <small class="text-muted">Латинскими буквами! Если поле не заполнено, в базу заносится транслитерация</small>
 			</fieldset>
-    		<button type="submit" name="submit" class="btn btn-primary form-group"><i class="fa fa-save"></i> Сохранить</button>
+    		<button type="submit" name="submit" class="btn btn-primary form-group add-edit-btn"><i class="fa fa-save"></i> Сохранить</button>
 		</form>    	    	
 	</div>
 	<div class="col-xs-6">

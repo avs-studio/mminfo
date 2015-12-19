@@ -13,6 +13,13 @@ checkAll.on('click', function(){
 
 btn.on('click', function(){
 	var checked = $("tbody input:checkbox:checked");
-		id = '&id=' + checked.prop("name");
-		$(this).attr('href', $(this).attr('href') + id);
+	var id = '';
+	$( checked ).map(function() {
+		name = this.name;
+	    id = id + name +',';
+	}).get().join();
+
+	id = id.substring(0, id.length - 1);
+	
+	$(this).attr('href', $(this).attr('href') + '&id=' + id);	
 });
